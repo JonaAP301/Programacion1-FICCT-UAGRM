@@ -26,9 +26,15 @@ impl Cadena {
         }
     }
 
-    /*fn obt_char(&self, posicion: usize) -> char {
-        
-    }*/
+    //obtener caracter por posición
+    fn obt_char(&self, posicion:usize) -> char{
+        if posicion < self.longitud {
+            self.caracteres[posicion]
+            //self.char().nth(posicion);
+        } else {
+            '\0';
+        }
+    }
 
     // limpia la cadena para poder ingresar una nueva
     fn limpiar(&mut self) {
@@ -73,7 +79,7 @@ fn mostrar_menu(c: &Cadena) {
     println!("║  1. Ingresar nueva cadena        ║");
     println!("║  2. Mostrar cadena               ║");
     println!("║  3. Longitud                     ║");
-    //println!("║  4. Obtener carácter (posición)  ║");
+    println!("║  4. Obtener carácter (posición)  ║");
     println!("╠══════════════════════════════════╣");
     println!("║  Q. Salir                        ║");
     println!("╚══════════════════════════════════╝");
@@ -114,7 +120,7 @@ fn main() {
 
             "3" => println!("  Longitud: → {}", c.obt_longitud()),
 
-            /*"4" => {
+            "4" => {
                 println!("  Ingresa la posición (1 = izquierda):");
                 match leer_numero() {
                     Some(pos) if pos >= 1 && pos <= c.obt_longitud() => {
@@ -123,7 +129,7 @@ fn main() {
                     Some(_) => println!("  Posición fuera de rango (1 a {}).", c.obt_longitud()),
                     None    => println!("  Posición inválida."),
                 }
-            } */
+            } 
 
             "q" | "Q" => { println!("\n  Hasta luego.\n"); break; }
             _          => println!("  Opción no válida."),

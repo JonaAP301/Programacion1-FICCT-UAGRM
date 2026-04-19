@@ -62,25 +62,55 @@ impl Cadena {
     }*/
 
 // NUEVOS EJERCICIOS    
+
+    //Recibe una posición y un caracter. Se debe reemaplazar el caracter en esa posición por el nuevo caracter.
+    fn reempla_pos_car(& mut self, pos: usize, c: char) {
+        if pos > 0 && pos <= self.longitud{
+            self.caracteres[pos-1] = c;
+        }
+    }
     
-    /*fn reemplazar_pos_car(&self, pos, c) {
-       //Recibe una posición y un caracter. Se debe reemaplazar el caracter en esa posición por el nuevo caracter.
-    }*/
+    //Recibe 2 caracteres. El primero es uno que contiene la cadena, que debe ser reemplazdo por el otro caracter
+    fn reempla_caract(& mut self, c:char, x:char){
+        for i in 0..self.longitud {
+            if self.caracteres[i] == c {
+                self.reempla_pos_car(i,x);
+                break;
+            }
+        }
+    }
 
-    /*fn reemplazar_car(&self, c, x) {
-       //Recibe 2 caracteres. El primero es uno que contiene la cadena, que debe ser reemplazdo por el otro caracter
-    }*/
+   //Contar la cantidad de vocales y consonantes que contiene la cadena.
+    fn cont_voca_cons(&self) -> (usize, usize) {
+        let mut vocales = 0;
+        let mut cons = 0;
 
-    /*fn cont_voc_cons(&self) -> u8 {
-       //Contar la cantidad de vocales y consonantes que contiene la cadena.
-    }*/
+        for &c in &self.caracteres[..self.longitud] {
+            if c.is_alphabetic() { //este lado verifica si es vocal y consonantes , con tilde y deja de lado los números y signos no alfabeticos 
+                if "aeiouAEIOU".contains(c) { //en este verifico si es vocal con esta ''.contains''  
+                    vocales += 1;
+                } else {
+                    cons += 1;
+                }
+            }
+        }
+        (vocales, cons)
+    }    
 
     //MAS EJERCICIOS
 
-    /*fn eliminar_pos(& mut self, pos:usize) {
+    //fn eliminar_pos(& mut self, pos:usize) {
         //Dada un posicion, eliminar el caracter en esa posicion, a travez de intercambio.
         //"Hola como va" pos = 7 Result = "Hola cmo va" (longitud reduce)
-    }*/
+   fn elim_pos(& mut self,pos: usize){
+        if pos > 0 && pos <= self.longitud{
+            let ubic: usize=pos-1;
+            for i in ubic..self.longitud-1{
+                self.caracteres[i] = self.caracteres[i+1]; 
+            }
+            self.longitud -= 1;
+        }
+    }
 
     /*fn obtener_subcadena(&self, inicio: usize, fin: usize) -> Cadena {
 
